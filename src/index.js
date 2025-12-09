@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// Получаем переменные из окружения или HTML
+const getEnvVariable = (name) => {
+  // Попробуем получить из meta-тега
+  const meta = document.querySelector(`meta[name="${name}"]`);
+  return meta ? meta.getAttribute('content') : process.env[name];
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App 
+      version={getEnvVariable('ARM_VERSION') || '01.01'} 
+      date={getEnvVariable('ARM_DATE') || '01.06.2018'} 
+    />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

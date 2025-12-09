@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+function App({ version, date }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div style={{
+      padding: '20px',
+      fontFamily: 'Arial, sans-serif'
+    }}>
+      <h1>React Application</h1>
+      <div style={{
+        backgroundColor: '#f5f5f5',
+        padding: '20px',
+        borderRadius: '8px',
+        marginTop: '20px'
+      }}>
+        <h3>Build Information:</h3>
+        <p><strong>Version:</strong> {version}</p>
+        <p><strong>Build Date:</strong> {date}</p>
+        <p><strong>Current Time:</strong> {new Date().toLocaleString()}</p>
+      </div>
+      <div style={{ marginTop: '30px' }}>
+        <h3>Статус сборки:</h3>
+        <p style={{ color: 'green', fontWeight: 'bold' }}>
+          ✅ Production сборка успешно создана!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </div>
     </div>
   );
 }
