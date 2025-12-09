@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env) => {
   return {
@@ -34,7 +35,12 @@ module.exports = (env) => {
         title: 'React App',
         ARM_VERSION: env.ARM_VERSION || '01.01',
         ARM_DATE: env.ARM_DATE || '01.06.2018'
-      })
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: 'src/env.js', to: 'env.js' }
+        ],
+      }),
     ],
     devServer: {
       static: {
